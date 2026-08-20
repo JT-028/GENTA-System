@@ -103,7 +103,6 @@ GENTA_SYSTEM/
 │   ├── ARDUINO/                    # ESP32 sketches
 │   └── requirements.txt
 ├── .env.example
-├── .github/workflows/ci.yml
 └── README.md
 ```
 
@@ -221,7 +220,7 @@ If a credential ever lived in git history of the older split remotes (`JT-028/GE
 | PHP CS | `cd GENTA && composer cs-check` |
 | IoT syntax | `python -m py_compile GENTA_MAIN_SYSTEM_IoT/GENTA_Flask.py GENTA_MAIN_SYSTEM_IoT/config.py` |
 
-CI: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) lints PHP under `GENTA/src` and byte-compiles the Python entrypoints.
+GitHub Actions CI is disabled for this portfolio archive (no hosted runner / billing required).
 
 ---
 
