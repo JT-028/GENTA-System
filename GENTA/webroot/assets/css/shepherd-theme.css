@@ -1,0 +1,156 @@
+/* Enhanced Shepherd theme for GENTA - Modern, polished, non-buggy */
+:root { 
+    --shepherd-z: 1060; 
+    --shepherd-primary: #1155cc;
+    --shepherd-primary-light: #e8f0fe;
+}
+
+/* Modal overlay - smooth dark background */
+.shepherd-modal-overlay-container { 
+    z-index: var(--shepherd-z) !important; 
+}
+.shepherd-modal-is-visible .shepherd-modal-overlay-container {
+    opacity: 1 !important;
+    transition: opacity 0.3s ease-in-out;
+}
+
+/* Tooltip container - elevated card style */
+.shepherd-element { 
+    box-shadow: 0 16px 48px rgba(0,0,0,0.15), 0 4px 12px rgba(0,0,0,0.08); 
+    border-radius: 16px;
+    z-index: calc(var(--shepherd-z) + 1) !important;
+    max-width: 480px;
+}
+
+/* Main tooltip body - clean white with subtle border */
+.shepherd-tooltip,
+.genta-shepherd-theme { 
+    background: #ffffff; 
+    color: #1f2937; 
+    border-radius: 16px; 
+    padding: 28px; 
+    border: 1px solid rgba(0,0,0,0.08);
+    max-width: 520px; 
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    font-size: 15px;
+    line-height: 1.6;
+}
+
+/* Title - bold and prominent with icon support */
+.shepherd-title { 
+    font-size: 1.35rem; 
+    font-weight: 700; 
+    color: var(--shepherd-primary); 
+    margin: 0 0 16px 0; 
+    line-height: 1.3;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid var(--shepherd-primary-light);
+}
+
+/* Body text - readable and spacious */
+.shepherd-text { 
+    font-size: 0.975rem; 
+    line-height: 1.7; 
+    color: #374151; 
+    margin-bottom: 0;
+}
+.shepherd-text p {
+    margin-bottom: 12px;
+}
+.shepherd-text p:last-child {
+    margin-bottom: 0;
+}
+
+/* Cancel button (X) - subtle and accessible */
+.shepherd-cancel-icon {
+    color: #6b7280;
+    font-size: 20px;
+    font-weight: 400;
+    transition: color 0.2s;
+}
+.shepherd-cancel-icon:hover {
+    color: #1f2937;
+}
+
+/* Button styling - modern and clickable */
+.shepherd-button { 
+    padding: 10px 20px; 
+    border-radius: 10px; 
+    font-weight: 600; 
+    border: none; 
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+}
+
+/* Primary button - gradient with hover effect */
+.shepherd-button-primary { 
+    background: linear-gradient(135deg, #1155cc 0%, #4285f4 100%); 
+    color: #fff; 
+    box-shadow: 0 4px 12px rgba(17,85,204,0.2);
+}
+.shepherd-button-primary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 6px 16px rgba(17,85,204,0.3);
+}
+
+/* Secondary button - clean gray */
+.shepherd-button-secondary { 
+    background: #f3f4f6; 
+    color: #374151;
+    border: 1px solid #e5e7eb;
+}
+.shepherd-button-secondary:hover {
+    background: #e5e7eb;
+}
+
+/* Footer with progress bar */
+.shepherd-footer,
+.genta-shepherd-footer { 
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center; 
+    gap: 12px; 
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid #f3f4f6;
+}
+
+/* Progress bar - clean indicator */
+.genta-shepherd-progress { 
+    height: 8px; 
+    background: #e5e7eb; 
+    border-radius: 4px; 
+    overflow: hidden; 
+    box-shadow: inset 0 1px 3px rgba(0,0,0,0.08);
+}
+.genta-shepherd-progress-fill { 
+    height: 100%; 
+    background: linear-gradient(90deg, #1155cc 0%, #4285f4 100%); 
+    width: 0%; 
+    transition: width 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    border-radius: 4px;
+    box-shadow: 0 1px 2px rgba(17,85,204,0.3);
+}
+
+/* Arrow styling that matches tooltip border */
+.shepherd-arrow { width: 18px; height: 12px; position: absolute; z-index: var(--shepherd-z); }
+.shepherd-arrow::before { content: ''; position: absolute; width: 100%; height: 100%; transform-origin: center; }
+.shepherd-element .shepherd-arrow { filter: drop-shadow(0 4px 12px rgba(0,0,0,0.12)); }
+.shepherd-element .shepherd-arrow[data-popper-placement^="top"]::before { background: var(--brand-primary); transform: rotate(180deg); border: 2px solid var(--brand-primary); }
+.shepherd-element .shepherd-arrow[data-popper-placement^="bottom"]::before { background: var(--brand-primary); transform: rotate(0deg); border: 2px solid var(--brand-primary); }
+
+/* Highlight target when Shepherd focuses it (non-invasive) */
+.shepherd-target-highlighter { box-shadow: 0 0 0 6px rgba(17, 85, 204, 0.10); border-radius: 8px; z-index: calc(var(--shepherd-z) - 1) !important; }
+
+/* Ensure tooltip inputs/buttons are usable on small screens */
+@media (max-width: 520px) {
+	.shepherd-tooltip { max-width: calc(100% - 32px); margin: 0 16px; }
+	.shepherd-button { width: auto; }
+}

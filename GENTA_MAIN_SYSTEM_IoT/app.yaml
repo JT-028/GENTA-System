@@ -1,0 +1,10 @@
+runtime: python39  # Choose the appropriate Python runtime version
+
+entrypoint: gunicorn -b :$PORT GENTA_Flask:app  # Use Gunicorn as the WSGI server
+
+handlers:
+- url: /static
+  static_dir: static  # Directory containing static files (CSS, JavaScript, images, etc.)
+
+- url: /.*
+  script: auto  # Automatically detect and run the main Python script

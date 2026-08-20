@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WiFi Management - GENTA System</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .header h1 {
+            color: #667eea;
+            margin-bottom: 10px;
+        }
+        
+        .status-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 20px;
+        }
+        
+        .device-card {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .device-card h2 {
+            color: #333;
+            margin-bottom: 15px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .status-badge {
+            display: inline-block;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 12px;
+            font-weight: bold;
+        }
+        
+        .status-connected {
+            background: #10b981;
+            color: white;
+        }
+        
+        .status-disconnected {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .info-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 10px 0;
+            border-bottom: 1px solid #eee;
+        }
+        
+        .info-label {
+            color: #666;
+            font-weight: 500;
+        }
+        
+        .info-value {
+            color: #333;
+            font-family: 'Courier New', monospace;
+        }
+        
+        .action-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .action-section h2 {
+            color: #333;
+            margin-bottom: 15px;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+        }
+        
+        .form-group label {
+            display: block;
+            color: #666;
+            margin-bottom: 5px;
+            font-weight: 500;
+        }
+        
+        .form-group select,
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            font-size: 14px;
+        }
+        
+        .form-group select:focus,
+        .form-group input:focus {
+            outline: none;
+            border-color: #667eea;
+        }
+        
+        .button-group {
+            display: flex;
+            gap: 10px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 24px;
+            border: none;
+            border-radius: 5px;
+            font-size: 14px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+        }
+        
+        .btn-primary {
+            background: #667eea;
+            color: white;
+        }
+        
+        .btn-primary:hover {
+            background: #5568d3;
+        }
+        
+        .btn-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .btn-success:hover {
+            background: #059669;
+        }
+        
+        .btn-danger {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .btn-danger:hover {
+            background: #dc2626;
+        }
+        
+        .btn-secondary {
+            background: #6b7280;
+            color: white;
+        }
+        
+        .btn-secondary:hover {
+            background: #4b5563;
+        }
+        
+        .profiles-section {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+        
+        .profile-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            transition: all 0.3s;
+        }
+        
+        .profile-item:hover {
+            border-color: #667eea;
+            background: #f9fafb;
+        }
+        
+        .profile-info h3 {
+            color: #333;
+            margin-bottom: 5px;
+        }
+        
+        .profile-info p {
+            color: #666;
+            font-size: 14px;
+        }
+        
+        .profile-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .flash-messages {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            max-width: 400px;
+        }
+        
+        .flash {
+            padding: 15px 20px;
+            border-radius: 5px;
+            margin-bottom: 10px;
+            animation: slideIn 0.3s ease;
+        }
+        
+        .flash-success {
+            background: #10b981;
+            color: white;
+        }
+        
+        .flash-error {
+            background: #ef4444;
+            color: white;
+        }
+        
+        .flash-warning {
+            background: #f59e0b;
+            color: white;
+        }
+        
+        @keyframes slideIn {
+            from {
+                transform: translateX(400px);
+                opacity: 0;
+            }
+            to {
+                transform: translateX(0);
+                opacity: 1;
+            }
+        }
+        
+        .scan-button {
+            margin-top: 10px;
+        }
+        
+        .network-list {
+            max-height: 200px;
+            overflow-y: auto;
+            margin-top: 10px;
+            border: 2px solid #e5e7eb;
+            border-radius: 5px;
+        }
+        
+        .network-item {
+            padding: 10px;
+            border-bottom: 1px solid #e5e7eb;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+        
+        .network-item:hover {
+            background: #f9fafb;
+        }
+        
+        .network-item:last-child {
+            border-bottom: none;
+        }
+        
+        .loading {
+            display: inline-block;
+            width: 16px;
+            height: 16px;
+            border: 2px solid #f3f3f3;
+            border-top: 2px solid #667eea;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <!-- Header -->
+        <div class="header" style="display:flex; justify-content:space-between; align-items:center; gap:16px;">
+            <div>
+                <h1>🌐 WiFi Management</h1>
+                <p>Configure WiFi credentials for ESP32 devices</p>
+            </div>
+            <div>
+                <!-- Back button to return to Admin Panel -->
+                <button class="btn btn-secondary" onclick="window.location.href='/'" aria-label="Back to Admin Panel">← Back to Admin</button>
+            </div>
+        </div>
+        
+        <!-- Flash Messages -->
+        {% with messages = get_flashed_messages(with_categories=true) %}
+            {% if messages %}
+                <div class="flash-messages">
+                    {% for category, message in messages %}
+                        <div class="flash flash-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        {% endwith %}
+        
+        <!-- Device Status -->
+        <div class="status-grid">
+            <!-- Recorder Status -->
+            <div class="device-card">
+                <h2>
+                    🎤 ESP32 Recorder
+                    {% if recorder_status and recorder_status.get('reachable', False) %}
+                        <span class="status-badge status-connected">Connected</span>
+                    {% else %}
+                        <span class="status-badge status-disconnected">Unreachable</span>
+                    {% endif %}
+                </h2>
+                
+                <div class="info-row">
+                    <span class="info-label">IP Address:</span>
+                    <span class="info-value" id="recorder_ip_display">{{ recorder_ip }}</span>
+                </div>
+                
+                {% if recorder_status and recorder_status.get('reachable', False) %}
+                    <div class="info-row">
+                        <span class="info-label">Current WiFi:</span>
+                        <span class="info-value">{{ recorder_status.ssid }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Signal Strength:</span>
+                        <span class="info-value">{{ recorder_status.rssi }} dBm</span>
+                    </div>
+                {% elif recorder_status and 'error' in recorder_status %}
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value" style="color: #dc3545;">{{ recorder_status.error }}</span>
+                    </div>
+                {% endif %}
+                
+                <button class="btn btn-secondary" style="margin-top: 10px;" onclick="testConnection('recorder')">
+                    Test Connection
+                </button>
+            </div>
+            
+            <!-- Player Status -->
+            <div class="device-card">
+                <h2>
+                    🔊 ESP32 Player
+                    {% if player_status and player_status.get('reachable', False) %}
+                        <span class="status-badge status-connected">Connected</span>
+                    {% else %}
+                        <span class="status-badge status-disconnected">Unreachable</span>
+                    {% endif %}
+                </h2>
+                
+                <div class="info-row">
+                    <span class="info-label">IP Address:</span>
+                    <span class="info-value" id="player_ip_display">{{ player_ip }}</span>
+                </div>
+                
+                {% if player_status and player_status.get('reachable', False) %}
+                    <div class="info-row">
+                        <span class="info-label">Current WiFi:</span>
+                        <span class="info-value">{{ player_status.ssid }}</span>
+                    </div>
+                    <div class="info-row">
+                        <span class="info-label">Signal Strength:</span>
+                        <span class="info-value">{{ player_status.rssi }} dBm</span>
+                    </div>
+                {% elif player_status and 'error' in player_status %}
+                    <div class="info-row">
+                        <span class="info-label">Status:</span>
+                        <span class="info-value" style="color: #dc3545;">{{ player_status.error }}</span>
+                    </div>
+                {% endif %}
+                
+                <button class="btn btn-secondary" style="margin-top: 10px;" onclick="testConnection('player')">
+                    Test Connection
+                </button>
+            </div>
+        </div>
+        
+        <!-- Configure WiFi -->
+        <div class="action-section">
+            <h2>⚙️ Configure WiFi</h2>
+
+            <!-- Discovered devices (populated via AJAX from /esp32/devices) -->
+            <div id="discovered-devices" style="margin-bottom:10px;">
+                <h3 style="margin-bottom:8px;">🔎 Discovered Devices</h3>
+                <div id="devices-list">
+                    <em style="color:#666;">Scanning for devices...</em>
+                </div>
+            </div>
+
+            <!-- Manual registration form (for cross-subnet scenarios) -->
+            <details style="margin-bottom:15px; padding:10px; background:#f8f9fa; border-radius:5px;">
+                <summary style="cursor:pointer; font-weight:600; color:#667eea;">
+                    📝 Manual Device Registration (if discovery fails)
+                </summary>
+                <form method="POST" action="/esp32/register-manual" style="margin-top:10px;">
+                    <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:10px;">
+                        <div>
+                            <label style="display:block; margin-bottom:5px; font-size:14px;">Recorder IP:</label>
+                            <input type="text" name="recorder_ip" placeholder="192.168.0.110" 
+                                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:5px;">
+                        </div>
+                        <div>
+                            <label style="display:block; margin-bottom:5px; font-size:14px;">Player IP:</label>
+                            <input type="text" name="player_ip" placeholder="192.168.0.109" 
+                                   style="width:100%; padding:8px; border:1px solid #ddd; border-radius:5px;">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-primary" style="width:100%;">
+                        ✅ Register Devices
+                    </button>
+                    <p style="margin-top:8px; font-size:12px; color:#666;">
+                        Use this if your PC and ESP32s are on different subnets (e.g., PC on 192.168.50.x, ESP32s on 192.168.0.x)
+                    </p>
+                </form>
+            </details>
+
+            <form method="POST" action="/wifi-management/configure">
+                <!-- Hidden overrides (set by Use buttons) -->
+                <input type="hidden" id="recorder_ip_override" name="recorder_ip_override" value="">
+                <input type="hidden" id="player_ip_override" name="player_ip_override" value="">
+                <div class="form-group">
+                    <label>Select Profile or Enter Manually:</label>
+                    <select id="profile-select" onchange="fillCredentials()">
+                        <option value="">-- Custom WiFi --</option>
+                        {% for profile in profiles %}
+                            <option value="{{ loop.index0 }}" 
+                                    data-ssid="{{ profile.ssid }}" 
+                                    data-password="{{ profile.password }}">
+                                {{ profile.name }} ({{ profile.ssid }})
+                            </option>
+                        {% endfor %}
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>WiFi SSID:</label>
+                    <input type="text" id="ssid" name="ssid" placeholder="Enter WiFi network name" required>
+                    <button type="button" class="btn btn-secondary scan-button" onclick="scanNetworks(this)">
+                        📡 Scan Networks
+                    </button>
+                    <div id="network-list" class="network-list" style="display: none;"></div>
+                </div>
+                
+                <div class="form-group">
+                    <label>WiFi Password:</label>
+                    <input type="password" id="password" name="password" placeholder="Enter WiFi password">
+                </div>
+                
+                <div class="form-group">
+                    <label>Configure:</label>
+                    <select name="target" required>
+                        <option value="both">Both ESP32s</option>
+                        <option value="recorder">Recorder Only</option>
+                        <option value="player">Player Only</option>
+                    </select>
+                </div>
+                
+                <div class="form-group">
+                    <label>
+                        <input type="checkbox" name="restart" value="yes" checked>
+                        Restart ESP32s after configuration
+                    </label>
+                </div>
+                
+                <div class="button-group">
+                    <button type="submit" class="btn btn-primary">💾 Save & Apply</button>
+                    <button type="button" class="btn btn-secondary" onclick="window.location.href='/'">
+                        ← Back to Dashboard
+                    </button>
+                </div>
+            </form>
+        </div>
+        
+        <!-- Saved Profiles -->
+        <div class="profiles-section">
+            <h2>📚 Saved WiFi Profiles</h2>
+            
+            {% for profile in profiles %}
+                <div class="profile-item">
+                    <div class="profile-info">
+                        <h3>{{ profile.name }}</h3>
+                        <p>SSID: {{ profile.ssid }}</p>
+                    </div>
+                    <div class="profile-actions">
+                        <button class="btn btn-success" onclick="useProfile({{ loop.index0 }})">
+                            Use This
+                        </button>
+                        <form method="POST" action="/wifi-management/profiles/delete/{{ loop.index0 }}" style="display: inline;">
+                            <button type="submit" class="btn btn-danger" onclick="return confirm('Delete this profile?')">
+                                🗑️ Delete
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            {% endfor %}
+            
+            <!-- Add New Profile -->
+            <div style="margin-top: 20px;">
+                <h3>➕ Add New Profile</h3>
+                <form method="POST" action="/wifi-management/profiles/add">
+                    <div class="form-group">
+                        <input type="text" name="profile_name" placeholder="Profile Name (e.g., School WiFi)" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="text" name="profile_ssid" placeholder="WiFi SSID" required>
+                    </div>
+                    <div class="form-group">
+                        <input type="password" name="profile_password" placeholder="WiFi Password">
+                    </div>
+                    <button type="submit" class="btn btn-primary">💾 Save Profile</button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        function fillCredentials() {
+            const select = document.getElementById('profile-select');
+            const ssidInput = document.getElementById('ssid');
+            const passwordInput = document.getElementById('password');
+            
+            if (select.value === '') {
+                ssidInput.value = '';
+                passwordInput.value = '';
+            } else {
+                const option = select.options[select.selectedIndex];
+                ssidInput.value = option.dataset.ssid;
+                passwordInput.value = option.dataset.password;
+            }
+        }
+        
+        function useProfile(index) {
+            const select = document.getElementById('profile-select');
+            select.selectedIndex = index + 1; // +1 because first option is "Custom"
+            fillCredentials();
+        }
+        
+        async function testConnection(device) {
+            // include override IP if set
+            const recorderOverride = document.getElementById('recorder_ip_override').value;
+            const playerOverride = document.getElementById('player_ip_override').value;
+            let url = `/wifi-management/test-connection/${device}`;
+            if (device === 'recorder' && recorderOverride) url += `?ip=${encodeURIComponent(recorderOverride)}`;
+            if (device === 'player' && playerOverride) url += `?ip=${encodeURIComponent(playerOverride)}`;
+            const response = await fetch(url);
+            const data = await response.json();
+            
+            if (data.success) {
+                alert(`✓ ${device.toUpperCase()} is connected!\nIP: ${data.ip}`);
+            } else {
+                alert(`✗ Cannot reach ${device.toUpperCase()}\nIP: ${data.ip}\n\nCheck if device is powered on and connected to network.`);
+            }
+        }
+        
+        async function scanNetworks(button) {
+            const originalText = button.innerHTML;
+            button.innerHTML = '<span class="loading"></span> Scanning...';
+            button.disabled = true;
+            
+            try {
+                // include recorder override if present
+                const recorderOverride = document.getElementById('recorder_ip_override').value;
+                let scanUrl = '/wifi-management/scan/recorder';
+                if (recorderOverride) scanUrl += `?ip=${encodeURIComponent(recorderOverride)}`;
+                const response = await fetch(scanUrl);
+                const data = await response.json();
+                
+                if (data.success && data.networks.length > 0) {
+                    const networkList = document.getElementById('network-list');
+                    networkList.innerHTML = '';
+                    
+                    data.networks.forEach(network => {
+                        const item = document.createElement('div');
+                        item.className = 'network-item';
+                        item.innerHTML = `
+                            <strong>${network.ssid}</strong>
+                            <span style="float: right; color: #666;">${network.rssi} dBm</span>
+                        `;
+                        item.onclick = () => {
+                            document.getElementById('ssid').value = network.ssid;
+                            networkList.style.display = 'none';
+                        };
+                        networkList.appendChild(item);
+                    });
+                    
+                    networkList.style.display = 'block';
+                } else {
+                    alert('No networks found or scan failed');
+                }
+            } catch (error) {
+                alert('Error scanning networks: ' + error.message);
+            } finally {
+                button.innerHTML = originalText;
+                button.disabled = false;
+            }
+        }
+        
+        // Auto-hide flash messages after 5 seconds
+        setTimeout(() => {
+            const flashes = document.querySelectorAll('.flash');
+            flashes.forEach(flash => {
+                flash.style.animation = 'slideIn 0.3s ease reverse';
+                setTimeout(() => flash.remove(), 300);
+            });
+        }, 5000);
+
+        // Fetch discovered devices and populate list
+        async function loadDiscoveredDevices(){
+            try{
+                const res = await fetch('/esp32/devices');
+                const devices = await res.json();
+                const list = document.getElementById('devices-list');
+                list.innerHTML = '';
+                if (!devices || devices.length === 0){
+                    list.innerHTML = '<em style="color:#666;">No devices discovered yet.</em>';
+                    return;
+                }
+                const now = Date.now()/1000;
+                devices.forEach(dev => {
+                    const div = document.createElement('div');
+                    div.style.padding = '8px';
+                    div.style.border = '1px solid #e5e7eb';
+                    div.style.borderRadius = '6px';
+                    div.style.marginBottom = '6px';
+                    const age = now - (dev.last_seen || now);
+                    const ageText = age < 60 ? `${Math.round(age)}s ago` : `${Math.round(age/60)}m ago`;
+                    div.innerHTML = `<strong>${dev.role || 'device'}</strong> — ${dev.ip} <span style="float:right;color:#666;">${ageText}</span><br><small style="color:#666">MAC: ${dev.mac || ''} SSID: ${dev.ssid || ''}</small>`;
+                    const actions = document.createElement('div');
+                    actions.style.marginTop = '6px';
+                    // Use as recorder/player buttons
+                    if (dev.role === 'recorder'){
+                        const btn = document.createElement('button'); btn.className='btn btn-success'; btn.style.marginRight='8px'; btn.textContent='Use for Recorder';
+                        btn.onclick = () => { document.getElementById('recorder_ip_override').value = dev.ip; document.getElementById('recorder_ip_display').textContent = dev.ip; };
+                        actions.appendChild(btn);
+                    }
+                    if (dev.role === 'player'){
+                        const btn = document.createElement('button'); btn.className='btn btn-success'; btn.style.marginRight='8px'; btn.textContent='Use for Player';
+                        btn.onclick = () => { document.getElementById('player_ip_override').value = dev.ip; document.getElementById('player_ip_display').textContent = dev.ip; };
+                        actions.appendChild(btn);
+                    }
+                    // Generic 'Use as Recorder' and 'Use as Player' for any device
+                    const btnR = document.createElement('button'); btnR.className='btn btn-secondary'; btnR.style.marginRight='8px'; btnR.textContent='Use as Recorder';
+                    btnR.onclick = () => { document.getElementById('recorder_ip_override').value = dev.ip; document.getElementById('recorder_ip_display').textContent = dev.ip; };
+                    const btnP = document.createElement('button'); btnP.className='btn btn-secondary'; btnP.textContent='Use as Player';
+                    btnP.onclick = () => { document.getElementById('player_ip_override').value = dev.ip; document.getElementById('player_ip_display').textContent = dev.ip; };
+                    actions.appendChild(btnR); actions.appendChild(btnP);
+                    div.appendChild(actions);
+                    list.appendChild(div);
+                });
+            }catch(e){
+                const list = document.getElementById('devices-list');
+                list.innerHTML = `<em style="color:#666;">Failed to load devices: ${e.message}</em>`;
+            }
+        }
+
+        // Load discovered devices on page load
+        window.addEventListener('load', loadDiscoveredDevices);
+    </script>
+</body>
+</html>

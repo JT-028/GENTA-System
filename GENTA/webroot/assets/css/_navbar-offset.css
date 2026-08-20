@@ -1,0 +1,16 @@
+/* Fallback offset for fixed navbar. This file provides a conservative default
+   padding so content will not be hidden under the navbar if JS measurement
+   hasn't run yet or is inaccurate. Tweak --navbar-offset if you want exact
+   pixel control. */
+:root {
+  --navbar-offset-px: 72px; /* conservative default - adjust as needed */
+}
+
+body.has-fixed-navbar .page-body-wrapper {
+  padding-top: var(--navbar-offset-px) !important;
+}
+
+/* If you prefer a smaller offset on narrow screens, override with media query */
+@media (max-width: 768px) {
+  :root { --navbar-offset-px: 64px; }
+}

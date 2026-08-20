@@ -1,0 +1,17 @@
+* text=auto
+*.php text eol=lf
+*.py text eol=lf
+*.ino text eol=lf
+*.md text eol=lf
+*.json text eol=lf
+*.yml text eol=lf
+*.sh text eol=lf
+*.png binary
+*.jpg binary
+*.jpeg binary
+*.gif binary
+*.ico binary
+*.woff binary
+*.woff2 binary
+*.ttf binary
+*.eot binary

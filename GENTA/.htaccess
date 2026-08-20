@@ -1,0 +1,26 @@
+# Uncomment the following to prevent the httpoxy vulnerability
+# See: https://httpoxy.org/
+#<IfModule mod_headers.c>
+#    RequestHeader unset Proxy
+#</IfModule>
+
+<IfModule mod_rewrite.c>
+    RewriteEngine on
+
+    # Allow well-known to pass through (let ACME/challenges work)
+    RewriteRule ^(\.well-known/.*)$ $1 [L]
+
+    # If request is already pointing to webroot, leave it alone
+    RewriteRule ^webroot/ - [L]
+
+    # If the requested file exists under webroot, serve that file directly
+    # This ensures static assets under webroot/assets are served by Apache and
+    # are not rewritten to the front controller.
+    RewriteCond %{DOCUMENT_ROOT}/GENTA/webroot%{REQUEST_URI} -f [OR]
+    RewriteCond %{DOCUMENT_ROOT}/GENTA/webroot%{REQUEST_URI} -d
+    RewriteRule ^(.*)$ webroot/$1 [L]
+
+    # If nothing matched, route the request into webroot/ (front controller)
+    RewriteRule ^$ webroot/ [L]
+    RewriteRule (.*) webroot/$1 [L]
+</IfModule>

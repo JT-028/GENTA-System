@@ -1,0 +1,1 @@
+<!-- Using SweetAlert2 for question deletion confirmation. The old Bootstrap modal was removed. -->

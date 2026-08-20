@@ -1,0 +1,13 @@
+{
+  "packages": [
+    "genai",
+    "google-cloud-storage",
+    "google-cloud-texttospeech",
+    "google-cloud-speech",
+    "google-api-python-client",
+    "openai",
+    "mysql-connector-python",
+    "requests",
+    "flask"
+  ]
+}

@@ -1,0 +1,142 @@
+# Virtual environments and environment files
+venv/
+newenv/
+newenv/*.*
+newenv.bak/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Distribution / packaging
+*.egg-info/
+build/
+dist/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+~$*
+
+# Logs, databases
+*.log
+*.sqlite3
+*.db
+
+# Sensitive files - do NOT commit
+GoogleCloud/key.json
+backups/
+MAIN_SYSTEM/backups/
+
+# Dependencies and large vendor folders
+vendor/
+node_modules/
+
+# Other
+*.exe
+*.dll
+# Python envs and caches
+newenv/
+.venv/
+venv/
+pyvenv.cfg
+__pycache__/
+*.pyc
+
+# Large binaries and archives
+third_party/ffmpeg-8.0-full_build.zip
+third_party/ffmpeg-8.0-full_build/
+ngrok-v3-stable-windows-amd64/
+*.zip
+*.tar.gz
+
+# Backups and uploads
+MAIN_SYSTEM/backups/
+backups/
+uploads/
+Sound recordings/
+
+# Editor
+.vscode/
+.DS_Store
+Thumbs.db
+
+# Local configuration, secrets and credentials
+.env
+.env.*
+!.env.example
+*.env
+secrets.json
+credentials.json
+client_secret*.json
+token.json
+id_rsa
+id_rsa.pub
+*.pem
+*.key
+*.crt
+*.p12
+GoogleCloud/key.json
+
+# OS / system files
+ehthumbs.db
+Icon?
+desktop.ini
+
+# IDE / editor
+.idea/
+.vs/
+.history/
+
+# Python build / packaging / caches
+pip-wheel-metadata/
+*.egg-info/
+dist/
+build/
+eggs/
+.eggs/
+
+# Test and coverage
+.pytest_cache/
+.coverage
+coverage.xml
+htmlcov/
+
+# Type check / lint caches
+.mypy_cache/
+.pytype/
+
+# Docker / containers
+docker-compose.override.yml
+.docker/
+
+# Terraform
+*.tfstate
+*.tfstate.backup
+.terraform/
+
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+
+# Logs
+*.log
+
+# Database files
+*.sqlite3
+*.db
+
+# Misc
+/.vagrant/
+*.box
+
+# Keep project markdown in git (setup / architecture notes)
+
+# Audio outputs (ignore WAVs produced by GENTA7 and other audio generators)
+*.wav
+WelcomeAudio/
+

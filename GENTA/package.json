@@ -1,0 +1,30 @@
+{
+  "name": "genta",
+  "version": "1.0.0",
+  "description": "![Build Status](https://github.com/cakephp/app/actions/workflows/ci.yml/badge.svg?branch=master) [![Total Downloads](https://img.shields.io/packagist/dt/cakephp/app.svg?style=flat-square)](https://packagist.org/packages/cakephp/app) [![PHPStan](https://img.shields.io/badge/PHPStan-level%207-brightgreen.svg?style=flat-square)](https://github.com/phpstan/phpstan)",
+  "main": "index.js",
+  "engines": {
+    "node": "20.x"
+  },
+  "directories": {
+    "test": "tests"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JT-028/GENTA.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/JT-028/GENTA/issues"
+  },
+  "homepage": "https://github.com/JT-028/GENTA#readme",
+  "devDependencies": {
+    "puppeteer": "^24.29.1"
+  }
+}

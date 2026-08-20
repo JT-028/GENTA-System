@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 278.12 235.75">
+  <defs>
+    <style>
+      .cls-1 {
+        fill: url(#linear-gradient-2);
+      }
+
+      .cls-2 {
+        fill: #95d7e1;
+      }
+
+      .cls-3 {
+        fill: #333895;
+      }
+
+      .cls-4 {
+        fill: url(#linear-gradient);
+      }
+    </style>
+    <linearGradient id="linear-gradient" x1="-91.76" y1="133.23" x2="250.22" y2="133.23" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#333895"/>
+      <stop offset="1" stop-color="#bfe5f9"/>
+    </linearGradient>
+    <linearGradient id="linear-gradient-2" x1="139.06" y1="63.56" x2="139.06" y2="201.14" gradientUnits="userSpaceOnUse">
+      <stop offset="0" stop-color="#000003"/>
+      <stop offset="1" stop-color="#303e46"/>
+    </linearGradient>
+  </defs>
+  <g id="outer_face" data-name="outer face">
+    <ellipse class="cls-3" cx="257.73" cy="142.23" rx="20.39" ry="24.23"/>
+    <ellipse class="cls-3" cx="20.39" cy="142.23" rx="20.39" ry="24.23"/>
+    <path class="cls-4" d="M252.22,111.6c-5.11-14.44-12.73-28-22.91-39.53-8.46-9.58-18.57-17.65-29.71-23.96-9.33-5.29-19.34-9.36-29.67-12.29-7.45-2.11-15.08-3.65-22.78-4.52-13.25-1.5-26.39-.02-39.29,3.16-1.71.42-3.41.87-5.1,1.36-10.25,2.93-20.19,7-29.45,12.29-11.06,6.31-21.1,14.38-29.49,23.96-10.1,11.53-17.66,25.09-22.74,39.53-7.02,19.97-10.53,41.56-4.83,62.29,3.73,13.56,11.46,25.49,22.31,34.43,12.15,10.01,27.11,16.08,42.19,20.12,37.68,10.09,78,9.75,115.49-1.15,1.34-.39,2.67-.79,3.99-1.22,11.53-3.69,22.75-8.79,32.41-16.18.67-.52,1.34-1.04,2-1.58,10.93-8.94,18.72-20.88,22.48-34.43,5.74-20.73,2.21-42.31-4.87-62.29Z"/>
+    <path class="cls-3" d="M207.61,63.99c-2.18-3.64-6.35-5.18-10.46-4.78-1.81.18-4.09.94-4.73,2.82s-.03,4.18,1.1,5.82c1.29,1.88,3.34,3.2,5.51,3.82,2.54.73,6.6,1,8.51-1.28.64-.76,2.08-3.05.08-6.4Z"/>
+    <rect class="cls-2" x="213.18" y="-3.68" width="7.23" height="74.27" rx="3.62" ry="3.62" transform="translate(39.08 -95.15) rotate(27.12)"/>
+  </g>
+  <g id="face">
+    <path id="screen_face" data-name="screen face" class="cls-1" d="M139.06,72.18c-40.07-1.02-82.42,30.09-85.57,80.29-.31,5,.07,10.05,1.44,14.86,3.68,12.98,12.72,21.59,27.51,25.51,3.73.99,7.58,1.42,11.44,1.42h90.36c3.86,0,7.71-.43,11.44-1.42,14.79-3.92,23.83-12.54,27.51-25.51,1.37-4.82,1.75-9.86,1.44-14.86-3.15-50.19-45.5-81.3-85.57-80.29Z"/>
+    <g id="wrong_pass_eyes">
+      <g id="LEFT_EYE" data-name="LEFT EYE">
+        <rect class="cls-2" x="101.56" y="113.92" width="9.58" height="55.68" rx="4.03" ry="4.03" transform="translate(-69.09 116.72) rotate(-45)"/>
+        <rect class="cls-2" x="101.56" y="113.92" width="9.58" height="55.68" rx="4.03" ry="4.03" transform="translate(131.39 -33.68) rotate(45)"/>
+      </g>
+      <g id="RIGHT_EYE" data-name="RIGHT EYE">
+        <rect class="cls-2" x="167.16" y="113.92" width="9.58" height="55.68" rx="4.03" ry="4.03" transform="translate(-49.88 163.11) rotate(-45)"/>
+        <rect class="cls-2" x="167.16" y="113.92" width="9.58" height="55.68" rx="4.03" ry="4.03" transform="translate(150.6 -80.07) rotate(45)"/>
+      </g>
+    </g>
+    <g id="closed_eyes" data-name="closed eyes">
+      <rect id="left_eye" data-name="left eye" class="cls-2" x="84.31" y="140.34" width="43.73" height="2.48" rx="1.24" ry="1.24"/>
+      <rect id="right_eye" data-name="right eye" class="cls-2" x="150.09" y="140.34" width="43.73" height="2.48" rx="1.24" ry="1.24"/>
+    </g>
+    <g id="peak_eyes" data-name="peak eyes">
+      <rect id="left_eye-2" data-name="left eye" class="cls-2" x="84.31" y="140.34" width="43.73" height="2.48" rx="1.24" ry="1.24"/>
+      <rect id="right_eye-2" data-name="right eye" class="cls-2" x="150.09" y="127.5" width="43.73" height="28.16" rx="5.75" ry="5.75"/>
+    </g>
+    <g id="happy_eyes">
+      <g id="left_eye-3" data-name="left eye">
+        <path class="cls-2" d="M85.73,145.27h0c-1.46-.91-1.87-2.89-.84-4.27,5.6-7.5,13.23-11.44,21.77-11.17,8.21.26,16.05,4.51,20.8,11.07,1.07,1.47.62,3.54-.98,4.4h0c-1.33.71-2.95.28-3.85-.94-3.69-5.03-9.89-8.39-16.17-8.59-6.47-.2-12.36,2.88-16.79,8.74-.93,1.24-2.63,1.59-3.95.77Z"/>
+      </g>
+      <g id="right_eye-3" data-name="right eye">
+        <path class="cls-2" d="M151.51,145.27h0c-1.46-.91-1.87-2.89-.84-4.27,5.6-7.5,13.23-11.44,21.77-11.17,8.21.26,16.05,4.51,20.8,11.07,1.07,1.47.62,3.54-.98,4.4h0c-1.33.71-2.95.28-3.85-.94-3.69-5.03-9.89-8.39-16.17-8.59-6.47-.2-12.36,2.88-16.79,8.74-.93,1.24-2.63,1.59-3.95.77Z"/>
+      </g>
+    </g>
+    <g id="open_eyes" data-name="open eyes">
+      <rect id="left_eye-4" data-name="left eye" class="cls-2" x="84.31" y="119.72" width="43.73" height="43.73" rx="8.03" ry="8.03"/>
+      <rect id="right_eye-4" data-name="right eye" class="cls-2" x="150.09" y="119.72" width="43.73" height="43.73" rx="8.03" ry="8.03"/>
+    </g>
+  </g>
+  <path id="microphone_lapel" data-name="microphone lapel" class="cls-2" d="M260.79,140.34c-1.78,0-3.26,1.33-3.47,3.09-1.22,10.46-9.17,43.54-60.58,48.21-.15.01-.29.05-.43.08-1.43-4.15-5.36-7.13-9.99-7.13h-14.94c-5.84,0-10.57,4.73-10.57,10.57s4.73,10.57,10.57,10.57h14.94c4.66,0,8.61-3.02,10.02-7.21.33.07.68.11,1.04.08,33.89-3.09,50.33-18.16,58.19-30.48,6.11-9.57,8.06-18.85,8.69-23.9.26-2.07-1.37-3.89-3.46-3.89Z"/>
+</svg>

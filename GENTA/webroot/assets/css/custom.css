@@ -1,0 +1,354 @@
+@font-face {
+    font-family: 'Aitech Rounded';
+    src: url('../fonts/aitech/aitech_rounded.woff2') format('woff2'),
+         url('../fonts/aitech/aitech_rounded.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+/* Theme palette variables (centralized for easier swaps)
+   Replace the values below with the brand/cyan palette supplied by the designer.
+*/
+:root {
+    --brand-primary: #0ea5e9; /* primary brand color (used to replace #b66dff) */
+    --vivid-sky: #48cae4;    /* accent for gradients */
+    --brand-primary-rgba-18: 14,165,233; /* rgb() tuple for subtle shadows */
+}
+
+/* Override Bootstrap primary utilities to use the centralized brand color */
+.btn-primary {
+    background-color: var(--brand-primary) !important;
+    border-color: var(--brand-primary) !important;
+    color: #ffffff !important;
+}
+.btn-primary:hover, .btn-primary:focus, .btn-primary:active {
+    /* Use a runtime-computed darker variant for broad browser support */
+    background-color: var(--brand-primary-dark, var(--brand-primary)) !important;
+    border-color: var(--brand-primary-dark, var(--brand-primary)) !important;
+    box-shadow: 0 6px 18px rgba(var(--brand-primary-rgba-18), 0.12) !important;
+}
+.text-primary { color: var(--brand-primary) !important; }
+.bg-primary { background-color: var(--brand-primary) !important; color: #fff !important; }
+.badge.bg-primary { background-color: var(--brand-primary) !important; }
+.spinner-border.text-primary { color: var(--brand-primary) !important; }
+/* CUSTOM CSS */
+
+.content-wrapper {
+    background-image: url('../images/sprites/cubes.png');
+}
+
+/* Override: ensure teacher navbar has no extra top spacing
+   Some templates add utility classes (pt-5, mt-3) or other rules that
+   cause extra top padding. Force zero top padding & margin for the
+   default-layout-navbar to guarantee the navbar sits flush to the top. */
+.default-layout-navbar,
+.navbar.default-layout-navbar {
+    padding-top: 0 !important;
+    margin-top: 0 !important;
+}
+
+/* Also ensure the page-body-wrapper doesn't introduce additional top padding */
+.page-body-wrapper {
+    padding-top: 0 !important;
+}
+
+/* Improved modal visual style overrides (keeps bootsrap behavior but with cleaner card look) */
+.modal .modal-content {
+    background-color: #ffffff !important; /* white panel */
+    border: 0 !important;
+    border-radius: 0.75rem !important;
+    box-shadow: 0 12px 40px rgba(17, 24, 39, 0.12) !important;
+    overflow: hidden;
+}
+
+.modal-header {
+    padding: 1rem 1.25rem !important;
+    background: transparent !important;
+    border-bottom: 1px solid #f1f1f4 !important;
+}
+
+.modal-title {
+    font-weight: 600;
+    color: #222222;
+}
+
+.modal-body {
+    padding: 1.25rem 1.5rem !important;
+    color: #333333;
+    background: transparent !important;
+}
+
+.modal-footer {
+    padding: 0.9rem 1.25rem !important;
+    border-top: 1px solid #f1f1f4 !important;
+    background: transparent !important;
+}
+
+/* Slightly larger modal for student forms */
+.modal-lg .modal-content {
+    border-radius: 0.75rem;
+}
+
+/* Limit modal maximum width to avoid overly wide modals on large screens */
+.modal-lg {
+    max-width: 900px !important;
+}
+
+/* Ensure extra-large modals also don't exceed a reasonable width */
+.modal-xl {
+    max-width: 1100px !important;
+}
+
+/* Darker backdrop for better focus */
+.modal-backdrop.show {
+    opacity: 0.6 !important;
+    background-color: rgba(0,0,0,0.6) !important;
+}
+
+/* Form field improvements inside modal */
+.student-form-container .form-control {
+    background: #ffffff !important;
+    border: 1px solid #e6e6ea !important;
+    box-shadow: none !important;
+    border-radius: 6px !important;
+    padding: 0.6rem 0.75rem !important;
+    color: #222 !important;
+}
+
+.student-form-container label {
+    color: #333333;
+    font-weight: 500;
+}
+
+/* Make primary action visually distinct */
+.modal-footer .btn-primary {
+    background-color: var(--brand-primary) !important;
+    border-color: var(--brand-primary) !important;
+    box-shadow: 0 6px 18px rgba(var(--brand-primary-rgba-18),0.18) !important;
+}
+
+/* Close button: subtle and accessible */
+.modal-header .btn-close {
+    opacity: 0.7;
+    filter: none;
+}
+
+@media (max-width: 575.98px) {
+    .modal-lg { max-width: 95% !important; }
+    .modal-body { padding: 1rem !important; }
+}
+
+/* Smooth fade transition for AJAX content swaps */
+.content-wrapper {
+    -webkit-transition: opacity 220ms ease;
+    transition: opacity 220ms ease;
+}
+
+/* Student detail action buttons */
+.student-actions .btn {
+    min-width: 100px;
+    justify-content: center;
+    padding-top: 0.45rem;
+    padding-bottom: 0.45rem;
+    border-radius: 8px;
+    font-weight: 600;
+}
+@media (max-width: 576px) {
+    .student-actions .btn { min-width: 100%; }
+}
+
+/* Make the actions container span full width and have buttons split space evenly
+   so the two buttons together match the width of the remarks textarea above. */
+.student-actions {
+    width: 100%;
+    display: flex !important; /* keep Bootstrap d-flex compatibility, but ensure flex rules */
+    gap: 0.75rem;
+}
+.student-actions .btn {
+    flex: 1 1 0;
+    min-width: 0; /* allow flex to shrink below previous min */
+}
+@media (max-width: 576px) {
+    .student-actions { gap: 0.5rem; flex-direction: column; }
+    .student-actions .btn { flex-basis: 100%; }
+}
+
+.student-actions .btn.btn-icon-label i {
+    display: inline-block;
+}
+.student-actions .btn.btn-icon-label span {
+    vertical-align: middle;
+}
+.student-actions .btn.btn-icon-label { padding-left: 0.9rem; padding-right: 0.9rem; }
+
+/* Teal button used for Analysis */
+.btn-teal {
+    color: #ffffff !important;
+    background-color: #00c4a7 !important; /* teal */
+    border-color: #00c4a7 !important;
+}
+.btn-teal:hover, .btn-teal:focus {
+    background-color: #00b295 !important;
+    border-color: #009e83 !important;
+}
+.student-actions .btn i {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+.student-actions .btn .me-2 { margin-right: 0.58rem !important; }
+
+/* --- Brand-driven overrides for sidebar, page headers and gradients --- */
+
+/* Ensure any existing "primary gradient" utility uses the new brand palette */
+.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--brand-primary), var(--vivid-sky)) !important;
+    color: #fff !important;
+    background-size: 200% 200%;
+}
+
+/* Cards / widgets that used the old primary gradient */
+.card-gradient-primary {
+    background: linear-gradient(135deg, var(--brand-primary), var(--vivid-sky)) !important;
+    color: #fff !important;
+    box-shadow: 0 12px 36px rgba(var(--brand-primary-rgba-18), 0.12) !important;
+}
+
+/* Page title icon (small circular icon next to page header) */
+.page-title-icon.bg-gradient-primary {
+    background: linear-gradient(135deg, var(--brand-primary), var(--vivid-sky)) !important;
+    color: #fff !important;
+    box-shadow: 0 10px 30px rgba(var(--brand-primary-rgba-18), 0.12) !important;
+}
+
+/* Sidebar: active link coloring and subtle background highlight */
+#sidebar .nav-item .nav-link {
+    transition: background-color 180ms ease, color 180ms ease;
+}
+#sidebar .nav-link.active,
+#sidebar .nav-item.active > .nav-link {
+    color: var(--brand-primary) !important;
+    /* Remove the translucent blue block behind active items — keep text/icon color only */
+    background: transparent !important;
+}
+
+/* Remove the large blue/tint block behind the profile card and nav tabs */
+#sidebar .nav-profile,
+#sidebar .nav-profile .nav-link {
+    background: transparent !important;
+    box-shadow: none !important;
+}
+
+/* Ensure default links in the sidebar don't have a tinted background by default */
+#sidebar .nav-link {
+    background: transparent !important;
+}
+
+/* Active items use colored text/icon only (no left accent bar) */
+#sidebar .nav-link.active, #sidebar .nav-item.active > .nav-link {
+    /* keep colored text/icon via existing rules; no extra pseudo-element */
+}
+
+/* Sidebar: ensure icon and title inherit the active color */
+#sidebar .nav-link .menu-title { color: inherit; }
+#sidebar .nav-link .menu-icon { color: #9aa0a6; transition: color 160ms ease; }
+#sidebar .nav-link.active .menu-icon,
+#sidebar .nav-item.active .menu-icon { color: var(--brand-primary) !important; }
+
+/* Breadcrumb / page header subtle accent — keep text legible but use brand for small accents */
+.page-header .page-title .page-title-icon {
+    /* class already contains bg-gradient-primary in markup; this reinforces it */
+    background: linear-gradient(135deg, var(--brand-primary), var(--vivid-sky)) !important;
+    color: #fff !important;
+}
+
+/* Generic fallback for any remaining "*-gradient-primary" utilities */
+[class*="-gradient-primary"], .gradient-primary {
+    background: linear-gradient(135deg, var(--brand-primary), var(--vivid-sky)) !important;
+    color: #fff !important;
+}
+
+/* Small helper: active badges or small elements using a translucent brand tint */
+.brand-tint {
+    background: rgba(var(--brand-primary-rgba-18), 0.06);
+    color: var(--brand-primary);
+}
+
+/* Improve auth card look on guest pages */
+.auth-form-light {
+    background: #ffffff; /* ensure white background for consistent shadow */
+    border-radius: 12px;
+    box-shadow: 0 14px 40px rgba(14,165,233,0.08), 0 6px 18px rgba(9,30,45,0.04);
+    transition: box-shadow 180ms ease, transform 160ms ease;
+}
+.auth-form-light:hover {
+    box-shadow: 0 18px 60px rgba(14,165,233,0.09), 0 8px 22px rgba(9,30,45,0.06);
+}
+
+/* Tighter welcome text styles for auth pages */
+.auth-title {
+    font-size: 1.375rem !important;
+    font-weight: 700;
+    color: #0f1724;
+    margin-bottom: 6px;
+}
+.auth-subtitle {
+    margin-bottom: 16px;
+    color: #475569; /* slightly darker than previous */
+    font-size: 0.98rem;
+}
+
+
+
+/* Password visibility toggle: display only the icon (no square button)
+   - Use a slightly larger invisible hit area for touch devices while keeping the
+     visible icon compact.
+   - On hover/focus, the icon color darkens using --brand-primary-dark (computed at runtime).
+*/
+.password-toggle-icon {
+    background: transparent !important;
+    border: 0 !important;
+    margin: 0 !important;
+    /* Increase hit-target while keeping icon visually compact */
+    padding: 6px 8px !important; /* touch-friendly hit area */
+    width: auto !important;
+    height: auto !important;
+    color: var(--brand-primary) !important;
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 1.05rem !important;
+    line-height: 1 !important;
+    box-shadow: none !important;
+    cursor: pointer !important;
+    transition: color 140ms ease, transform 120ms ease;
+    border-radius: 6px !important; /* small radius to keep hit area shaped */
+}
+
+/* Hover (desktop) and active look */
+.password-toggle-icon:hover {
+    color: var(--brand-primary-dark, rgba(0,0,0,0.8)) !important;
+    transform: translateY(-1px);
+}
+
+/* Focus for keyboard users: visible ring for accessibility */
+.password-toggle-icon:focus {
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(var(--brand-primary-rgba-18), 0.12) !important;
+    border-radius: 8px !important;
+}
+
+/* Slightly larger touch target on small screens */
+@media (max-width: 576px) {
+    .password-toggle-icon {
+        padding: 10px 12px !important;
+        font-size: 1.15rem !important;
+    }
+}
+
+/* Position the password toggle inside positioned form-group containers */
+.form-group.position-relative .password-toggle-icon {
+    position: absolute !important;
+    right: 10px !important;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+}
+

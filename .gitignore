@@ -1,0 +1,149 @@
+# =============================================================================
+# GENTA System — GitHub-safe ignore list
+# Keeps the published repo to source code, docs, and small assets only.
+# Local venvs, vendor trees, speech models, ffmpeg, and runtime data stay on disk.
+# =============================================================================
+
+# Nested git metadata (local clones of the older split repos)
+**/.git.bak/
+**/.git.bak
+GENTA_MAIN_SYSTEM_IoT-mirror.git/
+
+# Secrets and local config
+.env
+.env.*
+!.env.example
+!**/.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+id_rsa*
+credentials.json
+client_secret*.json
+token.json
+secrets.json
+GENTA/config/app_local.php
+GENTA/config/app_local.production.php
+GENTA/cloudways_app_local.php
+GENTA_MAIN_SYSTEM_IoT/GoogleCloud/key.json
+GENTA_MAIN_SYSTEM_IoT/GoogleCloud/*.json
+!GENTA_MAIN_SYSTEM_IoT/GoogleCloud/key.json.example
+
+# Python
+**/__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.pytest_cache/
+.mypy_cache/
+.venv/
+venv/
+newenv/
+newenv.bak/
+GENTA_MAIN_SYSTEM_IoT/.venv/
+GENTA_MAIN_SYSTEM_IoT/newenv/
+
+# PHP / Composer / Node
+**/vendor/
+**/node_modules/
+GENTA/myapp/
+GENTA/shepherd-main/
+composer.phar
+
+# CakePHP runtime
+GENTA/logs/*
+!GENTA/logs/.gitkeep
+GENTA/tmp/*
+!GENTA/tmp/.gitkeep
+GENTA/webroot/uploads/profile_images/*
+!GENTA/webroot/uploads/profile_images/.gitkeep
+
+# Debug / one-off webroot scripts (not part of the product)
+GENTA/webroot/debug*.php
+GENTA/webroot/test_*.php
+GENTA/webroot/test-*.php
+GENTA/webroot/view_logs.php
+GENTA/webroot/fix-genta-path.php
+GENTA/webroot/simple_hook.php
+GENTA/src/**/*.bak*
+*.bak
+*.bak_*
+
+# Debug dumps with student / quiz PII
+GENTA/config/schema/genta.sql
+GENTA/archive-debugging-2025-11-15/
+
+# IoT runtime, backups, PII, generated audio
+GENTA_MAIN_SYSTEM_IoT/uploads/
+GENTA_MAIN_SYSTEM_IoT/MAIN_SYSTEM/uploads/
+GENTA_MAIN_SYSTEM_IoT/MAIN_SYSTEM/backups/
+GENTA_MAIN_SYSTEM_IoT/backups/
+GENTA_MAIN_SYSTEM_IoT/Sound recordings/
+GENTA_MAIN_SYSTEM_IoT/RepeatAudio/
+GENTA_MAIN_SYSTEM_IoT/WelcomeAudio/
+GENTA_MAIN_SYSTEM_IoT/QUIZ File/
+GENTA_MAIN_SYSTEM_IoT/conversation_history.json
+GENTA_MAIN_SYSTEM_IoT/*.wav
+GENTA_MAIN_SYSTEM_IoT/*.mp3
+GENTA_MAIN_SYSTEM_IoT/*.db
+GENTA_MAIN_SYSTEM_IoT/*.log
+GENTA_MAIN_SYSTEM_IoT/output.txt
+GENTA_MAIN_SYSTEM_IoT/transcribed_text.txt
+GENTA_MAIN_SYSTEM_IoT/genta_action_log.txt
+GENTA_MAIN_SYSTEM_IoT/MAIN_SYSTEM/genta_action_log.txt
+GENTA_MAIN_SYSTEM_IoT/MAIN_SYSTEM/output.txt
+GENTA_MAIN_SYSTEM_IoT/MAIN_SYSTEM/*.txt
+GENTA_MAIN_SYSTEM_IoT/ARDUINO/**/state_token.txt
+GENTA_MAIN_SYSTEM_IoT/old genta7 code
+GENTA_MAIN_SYSTEM_IoT/ngrok-v3-stable-windows-amd64/
+GENTA_MAIN_SYSTEM_IoT/MELCs/*.pdf
+GENTA_MAIN_SYSTEM_IoT/composer.json
+GENTA_MAIN_SYSTEM_IoT/composer.lock
+
+# Large third-party binaries (install locally — see README)
+GENTA_MAIN_SYSTEM_IoT/third_party/
+GENTA_MAIN_SYSTEM_IoT/model/
+GENTA_MAIN_SYSTEM_IoT/boards.json
+GENTA_MAIN_SYSTEM_IoT/tools/arduino-cli/
+GENTA_MAIN_SYSTEM_IoT/tools/arduino-cli.zip
+GENTA_MAIN_SYSTEM_IoT/tools/users_backup_*.json
+GENTA_MAIN_SYSTEM_IoT/tools/*.wav
+GENTA_MAIN_SYSTEM_IoT/tools/raw_out/
+GENTA_MAIN_SYSTEM_IoT/tools/*.db
+GENTA_MAIN_SYSTEM_IoT/tools/debug_genai_*-Jumbo.py
+*.exe
+*.dll
+*.zip
+*.7z
+*.tar.gz
+*.rar
+
+# ESP32 build artifacts
+**/build/
+*.elf
+*.map
+*.bin
+
+# IDE / OS
+.vs/
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+*.lnk
+
+# Logs and caches
+*.log
+*.cache
+*.sqlite
+*.sqlite3
+npm-debug.log*
+yarn-error.log*
+.phpunit.result.cache
+
+# Appendix dump (generated, not source)
+GENTA_SOURCE_CODE_APPENDIX.txt

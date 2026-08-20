@@ -1,0 +1,68 @@
+# CakePHP specific files #
+##########################
+/config/.env
+/.env
+/config/app_local.php
+/config/app_local.production.php
+/cloudways_app_local.php
+/logs/*
+/tmp/*
+/vendor/*
+/myapp/
+/shepherd-main/
+/archive-debugging-2025-11-15/
+/webroot/uploads/profile_images/*
+!webroot/uploads/profile_images/.gitkeep
+/webroot/debug*.php
+/webroot/test_*.php
+/webroot/test-*.php
+/webroot/view_logs.php
+/webroot/fix-genta-path.php
+/webroot/simple_hook.php
+
+# OS generated files #
+######################
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+# Icon must end with two \r
+Icon
+
+ehthumbs.db
+Thumbs.db
+.directory
+
+# Tool specific files #
+#######################
+# PHPUnit
+.phpunit.result.cache
+tests.sqlite
+# vim
+*~
+
+# Archive folder created by cleanup script/workflow
+/archive-debugging-2025-11-15/
+*.sql
+*.swp
+*.swo
+# sublime text & textmate
+*.sublime-*
+*.stTheme.cache
+*.tmlanguage.cache
+*.tmPreferences.cache
+# Eclipse
+.settings/*
+# JetBrains, aka PHPStorm, IntelliJ IDEA
+.idea/*
+# NetBeans
+# nova
+.nova
+# Sass preprocessor
+.sass-cache/
+# node
+/node_modules/*
+# yarn
+yarn-debug.log
+yarn-error.log

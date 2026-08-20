@@ -1,0 +1,14 @@
+<IfModule mod_rewrite.c>
+    RewriteEngine On
+    # Fix accidental double-app-base requests like /GENTA/GENTA/... -> redirect to /GENTA/...
+    # This is a defensive, development-only convenience that avoids 404s when
+    # some templates or cached HTML contain duplicated subpaths.
+    RewriteCond %{REQUEST_URI} ^/GENTA/GENTA/(.*)$ [NC]
+    RewriteRule ^ /GENTA/%1 [R=301,L]
+    # When serving the app from a subdirectory, set the RewriteBase to the folder
+    # This helps mod_rewrite generate correct internal paths and avoids duplicated
+    # path segments when the server does not automatically set the base.
+    RewriteBase /GENTA/
+    RewriteCond %{REQUEST_FILENAME} !-f
+    RewriteRule ^ index.php [L]
+</IfModule>
