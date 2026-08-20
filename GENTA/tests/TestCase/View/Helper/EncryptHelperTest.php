@@ -4,6 +4,7 @@ declare(strict_types=1);
 namespace App\Test\TestCase\View\Helper;
 
 use App\View\Helper\EncryptHelper;
+use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 use Cake\View\View;
 
@@ -27,6 +28,7 @@ class EncryptHelperTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Configure::write('App.encryptionKey', 'test-encryption-key-32-characters!');
         $view = new View();
         $this->Encrypt = new EncryptHelper($view);
     }

@@ -5,6 +5,7 @@ namespace App\Test\TestCase\Controller\Component;
 
 use App\Controller\Component\DecryptComponent;
 use Cake\Controller\ComponentRegistry;
+use Cake\Core\Configure;
 use Cake\TestSuite\TestCase;
 
 /**
@@ -27,6 +28,7 @@ class DecryptComponentTest extends TestCase
     protected function setUp(): void
     {
         parent::setUp();
+        Configure::write('App.encryptionKey', 'test-encryption-key-32-characters!');
         $registry = new ComponentRegistry();
         $this->Decrypt = new DecryptComponent($registry);
     }

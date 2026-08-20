@@ -29,6 +29,14 @@ return [
     ],
 
     /*
+     * APP_ENCRYPTION_KEY powers EncryptHelper / Encrypt|DecryptComponent.
+     * Never commit a real value — set it in .env or app_local.php only.
+     */
+    'App' => [
+        'encryptionKey' => env('APP_ENCRYPTION_KEY', ''),
+    ],
+
+    /*
      * Connection information used by the ORM to connect
      * to your application's datastores.
      *
