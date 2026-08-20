@@ -210,7 +210,7 @@ If a credential ever lived in git history of the older split remotes (`JT-028/GE
 | PHP CS | `cd GENTA && composer cs-check` |
 | IoT syntax | `python -m py_compile GENTA_MAIN_SYSTEM_IoT/GENTA_Flask.py GENTA_MAIN_SYSTEM_IoT/config.py` |
 
-PHP lint locally: `php -l` on files under `GENTA/src`, `GENTA/config`, and `GENTA/templates`.
+CI: [`.github/workflows/ci.yml`](.github/workflows/ci.yml) lints PHP under `GENTA/src` and byte-compiles the Python entrypoints.
 
 ---
 
