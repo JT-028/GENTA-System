@@ -1,5 +1,16 @@
 # GENTA
 
+<p align="center">
+  <img src="docs/badges/header.svg" alt="AI-Powered Classroom Companion for DepEd Grade 3" width="100%" />
+</p>
+
+<p align="center">
+  <img src="docs/badges/flask.svg" alt="Flask 3.x" />
+  <img src="docs/badges/mysql.svg" alt="MySQL 8.x" />
+  <img src="docs/badges/gemini.svg" alt="Gemini AI" />
+  <img src="docs/badges/license.svg" alt="MIT License" />
+</p>
+
 **AI-powered classroom companion for DepEd Grade 3 — web portal, on-device voice AI, and ESP32 hardware in one system.**
 
 GENTA lets a teacher manage students, MELCs, and quizzes in a browser, while a physical robot in the classroom talks with a learner: it records answers, scores them against the teacher’s item bank, then writes a Gemini-backed analysis and a tailored module the web app can fetch.
